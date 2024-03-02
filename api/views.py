@@ -31,3 +31,13 @@ class Bank_List(View):
                                      'data': response.text})
         except Exception as e:
             return JsonResponse({'message': f'Error al obtener la lista de bancos: {e}'}, status=500)
+
+
+class Test(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request):
+        return JsonResponse({'message': 'Hello Wordl!!'}, status=200, json_dumps_params={'ensure_ascii': False})
